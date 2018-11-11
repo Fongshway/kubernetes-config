@@ -1,2 +1,2 @@
 # kubernetes-config
-Kubernetes config for my personal cluster
+Kubernetes config for my personal GCP cluster
