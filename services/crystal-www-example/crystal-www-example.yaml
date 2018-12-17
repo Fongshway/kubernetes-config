@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: crystal-www-example
-        image: gcr.io/my-personal-cloud-222003/crystal-www-example:latest
+        image: fongshway/sample-website:latest
         ports:
         - containerPort: 8080
 
