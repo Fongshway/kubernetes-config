@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echo-ingress
+spec:
+  rules:
+  - host: echo.fongshway.com
+    http:
+      paths:
+      - backend:
+          serviceName: echo
+          servicePort: 80
+  - host: crystal.fongshway.com
+    http:
+      paths:
+      - backend:
+          serviceName: crystal-www-example
+          servicePort: 80
