@@ -7,9 +7,15 @@ metadata:
     app: crystal-www-example
 spec:
   replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: crystal-www-example
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -18,8 +24,10 @@ spec:
       containers:
       - name: crystal-www-example
         image: fongshway/sample-website:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
+      restartPolicy: Always
 
 ---
 kind: Service
@@ -33,3 +41,4 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 8080
+  type: ClusterIP
