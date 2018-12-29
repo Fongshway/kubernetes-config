@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# ansible-lint test runner script.
+# https://github.com/ansible/ansible-lint
+
+set -e
+
+function run()
+{
+    ansible-lint plays/cluster.yaml
+}
+
+run
