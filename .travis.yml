@@ -5,6 +5,7 @@ python:
   - "3.6"
 env:
   global:
+    - PIPENV_VERBOSITY=-1
     - VERSION_PIP=18.1
     - VERSION_PIPENV=2018.11.26
 before_install:
