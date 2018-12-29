@@ -1,0 +1,12 @@
+---
+- name: cluster.yaml
+  hosts: local
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python"
+  tasks:
+    - name: Create a k8s namespace for testing
+      k8s:
+        name: testing
+        api_version: v1
+        kind: Namespace
+        state: present
