@@ -1,0 +1,12 @@
+---
+- src: https://github.com/jumperfly/ansible-role-root-ca.git
+  name: jumperfly.root_ca
+  version: v0.1.2
+
+- src: https://github.com/Fongshway/ansible-role-ssl-cert.git
+  name: jumperfly.ssl_cert
+  version: develop
+
+- src: https://github.com/Fongshway/ansible-role-tiller
+  name: jumperfly.tiller
+  version: develop
