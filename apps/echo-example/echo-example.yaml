@@ -2,21 +2,21 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: echo
+  name: echo-example
   labels:
-    app: echo
+    app: echo-example
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: echo
+      app: echo-example
   template:
     metadata:
       labels:
-        app: echo
+        app: echo-example
     spec:
       containers:
-      - name: echo
+      - name: echo-example
         image: hashicorp/http-echo
         args:
         - "-text=echo"
@@ -27,10 +27,10 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: echo
+  name: echo-example
 spec:
   selector:
-    app: echo
+    app: echo-example
   ports:
   - port: 80
     targetPort: 5678
