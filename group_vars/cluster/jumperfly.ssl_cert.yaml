@@ -1,0 +1,12 @@
+---
+- ssl_cert_ca_delegate: localhost
+- ssl_cert_ca_delegate_base_dir: ~/git/fongshway-kubernetes-config/etc/pki/ansible-ssl-certs
+- ssl_cert_ca_delegate_name: tiller-ca
+- ssl_cert_hosts:
+    - tiller-server
+    - 127.0.0.1
+- ssl_cert_k8s_secret_namespace: kube-system
+- ssl_cert_name: tiller-secret
+- ssl_cert_storage: k8s-secret
+- ssl_cert_subject_common_name: tiller-server
+- ssl_cert_type: server

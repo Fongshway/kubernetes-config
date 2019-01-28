@@ -1,12 +1,72 @@
 ---
+#  ansible-playbook cluster.yaml -i ../etc/hosts -v
 - name: cluster.yaml
   hosts: local
   vars:
     ansible_python_interpreter: "/usr/bin/env python"
+  vars_files:
+    - ../group_vars/cluster/jumperfly.root_ca.yaml
+    - ../group_vars/cluster/jumperfly.ssl_cert.yaml
+    - ../group_vars/cluster/jumperfly.tiller.yaml
   tasks:
-    - name: Create a k8s namespace for testing
-      k8s:
-        name: testing
-        api_version: v1
-        kind: Namespace
-        state: present
+    # - name: Create crystal-example app
+    #   k8s:
+    #     namespace: default
+    #     src: ../apps/crystal-example/crystal-example.yaml
+    #     state: present
+
+    # - name: Create echo-example app
+    #   k8s:
+    #     namespace: default
+    #     src: ../apps/echo-example/echo-example.yaml
+    #     state: present
+
+    # - name: Create ingress-nginx namespace
+    #   k8s:
+    #     src: ../namespaces/ingress-nginx.yaml
+    #     state: present
+
+    # - name: Create Nginx Ingress Controller resources
+    #   k8s:
+    #     src: ../ingress/ingress-nginx.yaml
+    #     state: present
+
+    # - name: Create Tiller SA and RBAC
+    #   k8s:
+    #     src: ../package-manager/tiller.yaml
+    #     state: present
+
+    - name: Create root CA for use with Ansible
+      import_role:
+        name: jumperfly.root_ca
+
+    - name: Create tiller SSL certs
+      import_role:
+        name: jumperfly.ssl_cert
+
+    - name: Run jumperfly.tiller role
+      import_role:
+        name: jumperfly.tiller
+
+    # - name: Run helm init
+    #   command: make install
+
+    # Install cert-manager Helm chart
+
+    # - name: Create production ClusterIssuer
+    #   k8s:
+    #     namespace: default
+    #     src: ../apps/cert-manager/production_issuer.yaml
+    #     state: present
+
+    # - name: Create staging ClusterIssuer
+    #   k8s:
+    #     namespace: default
+    #     src: ../apps/cert-manager/staging_issuer.yaml
+    #     state: present
+
+    # - name: Create ingress for services
+    #   k8s:
+    #     namespace: default
+    #     src: ../ingress/ingress-services.yaml
+    #     state: present

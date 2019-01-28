@@ -1,0 +1,2 @@
+---
+root_ca_base_dir: ~/git/fongshway-kubernetes-config/etc/pki/ansible-ssl-certs
