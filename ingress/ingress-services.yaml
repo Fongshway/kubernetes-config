@@ -1,19 +1,27 @@
+---
 kind: Ingress
 apiVersion: extensions/v1beta1
 metadata:
-  name: echo-ingress
+  name: ingress-services
   annotations:
     kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-production
 spec:
   tls:
   - hosts:
+    - crystal.fongshway.com
     - echo.fongshway.com
     secretName: letsencrypt-production
   rules:
+  - host: crystal.fongshway.com
+    http:
+      paths:
+      - backend:
+          serviceName: crystal-example
+          servicePort: 80
   - host: echo.fongshway.com
     http:
       paths:
       - backend:
-          serviceName: echo
+          serviceName: echo-example
           servicePort: 80
